@@ -6,7 +6,6 @@
 #include <chrono>
 #include <vlc/vlc.h>
 
-//#define DEBUG
 
 void
 backgroundProcessLoop()
@@ -14,13 +13,6 @@ backgroundProcessLoop()
     std::string const pathToNewVideo = "data/mergedVid.mp4";
     auto const state = state_singleton::get_instance();
     
-    //debugging
-#ifdef DEBUG
-    std::this_thread::sleep_for(std::chrono::minutes(1));
-    download_process_videos();
-    state->setMedia(libvlc_media_new_path(state->get_vlc_instance(), pathToNewVideo.c_str()));
-    state->setState(true);
-#endif
 
     std::this_thread::sleep_for(std::chrono::seconds(4));
     system("pacmd suspend 1");
@@ -28,7 +20,9 @@ backgroundProcessLoop()
     system("pacmd suspend 0");
     while(true)
     {
+		system("sudo ip link set wlan0 down");
         std::this_thread::sleep_for(std::chrono::hours(1));
+		system("sudo ip link set wlan0 up");
         download_process_videos();
         state->setMedia(libvlc_media_new_path(state->get_vlc_instance(), pathToNewVideo.c_str()));
         state->setState(true);

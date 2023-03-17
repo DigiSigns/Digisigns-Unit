@@ -20,10 +20,7 @@ main()
 	/* run initial video delete-download-process cycle once (prepare everything)
 	 * if video doesn't already exist */
 	std::ifstream videoCheck("./data/mergedVid.mp4");
-	if(videoCheck)
-		videoCheck.close();
-	else
-		download_process_videos();
+	download_process_videos();
 
 	// spawn background processing loop on second thread (no downtime following this)
 	std::thread backgroundThread(backgroundProcessLoop);
