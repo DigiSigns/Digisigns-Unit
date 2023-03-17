@@ -22,6 +22,10 @@ backgroundProcessLoop()
     state->setState(true);
 #endif
 
+    std::this_thread::sleep_for(std::chrono::seconds(4));
+    system("pacmd suspend 1");
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    system("pacmd suspend 0");
     while(true)
     {
         std::this_thread::sleep_for(std::chrono::hours(1));
