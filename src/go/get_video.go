@@ -32,7 +32,7 @@ func main() {
 
 	// Querying for necessary videos.
 	//rows, err := db.Query("SELECT bucket_id, name FROM storage.objects WHERE name like 'Geico%' OR name LIKE 'Y2%' ORDER BY name;")
-	rows, err := db.Query("SELECT video_url FROM orders WHERE start_date='"+getCurrTime()+"' AND device_id_pk=(SELECT id FROM devices WHERE devices.host_id="+SID+" AND devices.device_id="+UID+");")
+	rows, err := db.Query("SELECT video_url FROM orders WHERE is_approved=TRUE start_date='"+getCurrTime()+"' AND device_id_pk=(SELECT id FROM devices WHERE devices.host_id="+SID+" AND devices.device_id="+UID+");")
 	if err != nil {
 		log.Fatal(err)
 	}
