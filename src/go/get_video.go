@@ -21,6 +21,8 @@ const (
 func main() {
 	UID := os.Getenv("uid")
 	SID := os.Getenv("sid")
+	UID = "1"
+	SID = "1"
 	// Getting database connection
 	connStr := "user=postgres password=DigiSigns1029 host=db.udlsgnjteywvklskdwvx.supabase.co port=5432 dbname=postgres"
 	db, err := sql.Open("postgres", connStr)
@@ -83,5 +85,6 @@ func getCurrTime() string {
 	s += strconv.FormatInt(int64(t.Month()), 10)
 	s += "-"
 	s += strconv.FormatInt(int64(t.Day()), 10)
-	return s
+	//return s
+	return "2023-04-04"
 }
