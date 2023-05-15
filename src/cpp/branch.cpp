@@ -6,7 +6,9 @@
 #include <chrono>
 #include <vlc/vlc.h>
 
-#define DEBUG
+// uncomment the below preprocessor directive when battery needs to be tested, 
+// otherwise unit can't be accessed via SSH when video is playing
+// #define DEBUG
 
 void
 backgroundProcessLoop()
